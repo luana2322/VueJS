@@ -23,7 +23,7 @@ public class Product {
     private String image;
     private Double price;
     private String description;
-    private Date manufactureDate;
+        private Date manufactureDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categoryId",referencedColumnName = "categoryId")

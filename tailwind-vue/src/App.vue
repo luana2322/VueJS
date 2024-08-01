@@ -1,6 +1,6 @@
 
 <script setup>
-// import Product from './components/Product.vue'
+import Product from './components/Product.vue'
 import Category from './components/Category.vue'
 import Navbar from './components/Navbar.vue'
 
@@ -13,9 +13,9 @@ import 'flowbite';
 <template>
     <Navbar />
 
-    <Category />
+    <router-view/>
 
-    <Bottom />
+    <!-- <Bottom />x -->
    
 
 </template>

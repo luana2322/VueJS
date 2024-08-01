@@ -1,5 +1,6 @@
 package com.crudVuejs.service.serviceImpl;
 
+import com.crudVuejs.dto.ProductDto;
 import com.crudVuejs.exception.ResourceNotFoundException;
 import com.crudVuejs.model.Category;
 import com.crudVuejs.model.Product;
@@ -40,9 +41,32 @@ list1=productRepository.findAll();
     }
 
     @Override
-    public Product insert(Product category,Long categoryId) {
-        Category cate=categoryRepository.findById(categoryId).get();
-        category.setCategory(cate);
-        return productRepository.save(category);
+    public Product insert(ProductDto category) {
+        Product product1=convert(category);
+
+
+        return productRepository.save(product1);
+    }
+
+    @Override
+    public Product update(ProductDto product) {
+        Product product1=convert(product);
+
+
+        return productRepository.save(product1);
+    }
+
+    public Product convert (ProductDto prodto){
+        Product pro=new Product();
+        pro.setProductId(prodto.getProductId());
+        pro.setProductName(prodto.getProductName());
+        pro.setPrice(prodto.getPrice());
+        pro.setDescription(prodto.getDescription());
+        pro.setImage(prodto.getImage());
+        pro.setManufactureDate(prodto.getManufactureDate());
+        Category category1=categoryRepository.findById(prodto.getCategoryId()).get();
+
+        pro.setCategory(category1);
+        return pro;
     }
 }

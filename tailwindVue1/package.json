@@ -1,5 +1,5 @@
 {
-  "name": "tailwind-vue",
+  "name": "tailwindvue1",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,10 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
-    "bootstrap-vue": "^2.23.1",
     "flowbite": "^2.4.1",
-    "vue": "^3.4.35",
+    "vue": "^3.4.31",
     "vue-axios": "^3.5.2",
     "vue-router": "^4.4.2"
   },

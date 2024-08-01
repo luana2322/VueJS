@@ -1,6 +1,7 @@
 package com.crudVuejs.controller;
 
 import com.crudVuejs.model.Category;
+import com.crudVuejs.repository.CategoryRepository;
 import com.crudVuejs.service.serviceImpl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,8 @@ import java.util.stream.Collectors;
 public class CategoryController {
     @Autowired
     private CategoryServiceImpl categoryServiceImpl;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @GetMapping("/findAllcate")
     @CrossOrigin(origins = "http://localhost:8080")
@@ -29,6 +32,12 @@ public class CategoryController {
     @GetMapping("/findcategorybyId")
     private ResponseEntity<Category> findcategorybyId(@RequestParam("categoryId")Long categoryId){
         return ResponseEntity.ok(categoryServiceImpl.findbyId(categoryId));
+    }
+
+    @GetMapping("/findcategorybyproId")
+    private ResponseEntity<Category> findcategorybyproId(@RequestParam("productId")Long categoryId){
+                Category category=categoryRepository.findCategoriesByProductId(categoryId);
+        return ResponseEntity.ok(category);
     }
 
     @PostMapping("/addcategory")

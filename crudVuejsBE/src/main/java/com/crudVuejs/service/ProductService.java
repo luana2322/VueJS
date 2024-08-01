@@ -1,5 +1,6 @@
 package com.crudVuejs.service;
 
+import com.crudVuejs.dto.ProductDto;
 import com.crudVuejs.model.Category;
 import com.crudVuejs.model.Product;
 
@@ -9,5 +10,7 @@ public interface ProductService {
     List<Product> findAll();
     Product findbyId(Long productId);
     void deleteById(Long id);
-    Product insert(Product category,Long categoryId);
+    Product insert(ProductDto category );
+
+    Product update(ProductDto category);
 }
