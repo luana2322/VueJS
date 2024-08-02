@@ -243,13 +243,13 @@ export default {
                 this.getAllCate()
                 this.triggerNotification()
             })
-        },
-        triggerNotification() {
-            this.showNotification = true;
-            setTimeout(() => {
-                this.showNotification = false;
-            }, 2000); // Thông báo sẽ ẩn sau 1 giây
-        },
+            },
+            triggerNotification() {
+                this.showNotification = true;
+                setTimeout(() => {
+                    this.showNotification = false;
+                }, 2000); // Thông báo sẽ ẩn sau 1 giây
+            },
         triggerNotificationupdate() {
             this.showNotificationsuccess = true;
             setTimeout(() => {

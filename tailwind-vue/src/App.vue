@@ -1,7 +1,7 @@
 
 <script setup>
-import Product from './components/Product.vue'
-import Category from './components/Category.vue'
+import Product from './components/product/Product.vue'
+import Category from './components/category/Category.vue'
 import Navbar from './components/Navbar.vue'
 
 import Bottom from './components/Bottom.vue'
