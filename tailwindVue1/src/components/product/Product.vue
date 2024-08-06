@@ -99,7 +99,8 @@ export default {
         return {
             notiaddsuccess: false,
             products: [],
-            product: {}
+            product: {},
+            keyword: this.$route.query.keyword || '',
         }
 
     },
@@ -108,13 +109,26 @@ export default {
         if (this.$route.query.updatesuccess) {
             this.triggerNotification()
         }
+      
+    
 
-    },
+    }, 
     methods: {
         getAllPro() {
             axios.get("http://localhost:8080/product/findAllproduct").then(res => {
                 this.products = res.data
             })
+
+        }, search() {
+            const cookieValue = Cookies.get('keyword');
+            console.log(cookieValue)
+              if (cookieValue != null) {
+
+                  axios.get("http://localhost:8080/product/search?keyword=" + cookieValue).then(res => {
+                this.products = res.data
+            })
+            }
+           
 
         },
          deletepro(productId) {
@@ -138,8 +152,12 @@ export default {
                 this.notiaddsuccess = false;
             }, 2000); // Thông báo sẽ ẩn sau 1 giây
         },
+        created() {
+            console.log("ok ok")
+            this.search()
+        }
 
-
+      
 
     }
 }

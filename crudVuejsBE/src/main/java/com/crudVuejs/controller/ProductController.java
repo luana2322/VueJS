@@ -4,6 +4,7 @@ import com.crudVuejs.dto.ProductDto;
 import com.crudVuejs.exception.ResourceNotFoundException;
 import com.crudVuejs.model.Category;
 import com.crudVuejs.model.Product;
+import com.crudVuejs.repository.ProductRepository;
 import com.crudVuejs.service.serviceImpl.ProductServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,18 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductServiceImpl productServiceImpl;
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/findAllproduct")
     public ResponseEntity<List<Product>> findAll(){
         List<Product> categories=productServiceImpl.findAll();
+        return ResponseEntity.ok(categories);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> search(@RequestParam("keyword")String key){
+        List<Product> categories=productRepository.searchproduct(key);
         return ResponseEntity.ok(categories);
     }
 

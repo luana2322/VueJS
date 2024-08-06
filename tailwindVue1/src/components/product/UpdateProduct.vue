@@ -43,7 +43,8 @@ export default {
         return {
             product: {},
             productId: {},
-            categorys:[]
+            categorys: [],
+            category:{}
         }
 
     },
