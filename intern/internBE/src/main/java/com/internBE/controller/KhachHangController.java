@@ -1,6 +1,8 @@
 package com.internBE.controller;
 
+import com.internBE.dto.KhachHangGiaoDichDTO;
 import com.internBE.model.KhachHang;
+import com.internBE.repository.KhachHangRepository;
 import com.internBE.service.ServiceImpl.KhachHangServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ import java.util.List;
 public class KhachHangController {
     @Autowired
     private KhachHangServiceImpl khachHangServiceImpl;
+    @Autowired
+    private KhachHangRepository khachHangRepository;
 
     @GetMapping("/findAllcus")
     public ResponseEntity<List<KhachHang>> findAll(){
@@ -35,6 +39,16 @@ public class KhachHangController {
     public ResponseEntity<Void> deletetask(@RequestParam("makhachhang") Long categoryId) {
         khachHangServiceImpl.deleteById(categoryId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/giaoDich")
+    public List<KhachHangGiaoDichDTO> getAllKhachHangGiaoDich() {
+        return khachHangRepository.findAllKhachHangGiaoDich();
+    }
+
+    @GetMapping("/findgiaoDichBymaloaigd")
+    public List<KhachHangGiaoDichDTO> findgiaoDichBymaloaigd(@RequestParam("maLoaiGiaoDich")Long maLoaiGiaoDich) {
+        return khachHangRepository.findAllKhachHangByLoaiGiaoDich(maLoaiGiaoDich);
     }
 
 }

@@ -1,8 +1,10 @@
 package com.internBE.service.ServiceImpl;
 
+import com.internBE.dto.GiaoDichDto;
 import com.internBE.exception.ResourceNotFoundException;
 import com.internBE.model.GiaoDich;
 import com.internBE.repository.GiaoDichRepository;
+import com.internBE.repository.LoaiGiaoDichRepository;
 import com.internBE.service.GiaoDichService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ import java.util.Optional;
 public class GiaoDichServiceImpl implements GiaoDichService {
     @Autowired
     private GiaoDichRepository giaoDichRepository;
+    @Autowired
+    private KhachHangServiceImpl khachHangServiceImpl;
+    @Autowired
+    private LoaiGiaoDichRepository loaiGiaoDichRepository;
     @Override
     public List<GiaoDich> findAll() {
         List<GiaoDich> list1=new ArrayList<>();
@@ -37,8 +43,17 @@ public class GiaoDichServiceImpl implements GiaoDichService {
     }
 
     @Override
-    public GiaoDich insert(GiaoDich category) {
-        return giaoDichRepository.save(category);
+    public GiaoDich insert(GiaoDichDto dto) {
+GiaoDich giaoDichsave=new GiaoDich();
+        giaoDichsave.setDientich(dto.getDientich());
+        giaoDichsave.setDongia(dto.getDongia());
+        giaoDichsave.setMaGiaodich(dto.getMaGiaodich());
+        giaoDichsave.setNgayGiaodich(dto.getNgayGiaodich());
+        giaoDichsave.setLoaiGiaoDich(loaiGiaoDichRepository.findById(dto.getMaLoaigiaodich()).get());
+        giaoDichsave.setKhachhang(khachHangServiceImpl.findbyId(dto.getMakhachhang()));
+        System.out.println(dto.getMaLoaigiaodich()+"ok "+dto.getMakhachhang());
+        return giaoDichRepository.save(giaoDichsave);
+
     }
 
     @Override

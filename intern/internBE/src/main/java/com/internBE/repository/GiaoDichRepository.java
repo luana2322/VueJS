@@ -1,6 +1,6 @@
 package com.internBE.repository;
 
-import com.internBE.dto.dto;
+import com.internBE.dto.GiaoDichDto;
 import com.internBE.model.GiaoDich;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +15,7 @@ public interface GiaoDichRepository extends JpaRepository<GiaoDich,String> {
             " from giaodich g\n" +
             "join khachhang k\n" +
             "on g.makhachhang=k.makhachhang",nativeQuery = true)
-    List<dto> findCategoriesByProductId();
+    List<GiaoDichDto> findCategoriesByProductId();
 
     @Query(value="select g.* " +
             " from giaodich g\n" +

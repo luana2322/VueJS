@@ -1,12 +1,11 @@
 package com.internBE.controller;
 
-import com.internBE.dto.dto;
+import com.internBE.dto.GiaoDichDto;
 import com.internBE.model.GiaoDich;
 import com.internBE.repository.GiaoDichRepository;
 import com.internBE.service.ServiceImpl.GiaoDichServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,8 +25,8 @@ public class GiaoDichController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<dto>> findAlldto(){
-        List<dto> categories= (List<dto>) giaoDichRepository.findCategoriesByProductId();
+    public ResponseEntity<List<GiaoDichDto>> findAlldto(){
+        List<GiaoDichDto> categories= (List<GiaoDichDto>) giaoDichRepository.findCategoriesByProductId();
         return ResponseEntity.ok(categories);
     }
 
@@ -36,7 +35,7 @@ public class GiaoDichController {
         return ResponseEntity.ok(giaoDichServiceImpl.findbyId(categoryId));
     }
     @PostMapping("/addgiaodich")
-    public ResponseEntity<GiaoDich> addnewgd(@RequestBody GiaoDich category){
+    public ResponseEntity<GiaoDich> addnewgd(@RequestBody GiaoDichDto category){
         return ResponseEntity.ok(giaoDichServiceImpl.insert(category));
     }
 
