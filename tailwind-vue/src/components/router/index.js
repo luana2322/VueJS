@@ -7,11 +7,6 @@
 //         redirect: '/homepage'
 //     },
 //     {
-//         path: '/category',
-//         name: 'Category',
-//         component: Category
-//     },
-//     {
 //         path: '/giadich',
 //         name: 'GiaoDich',
 //         component: Product
